@@ -46,14 +46,14 @@ impl BufManager {
         self.index += 1;
         self.index %= self.bufs.len();
         self.update_buf();
-        println!("{}", self.index);
+        info!("Moving right to index: {}", self.index);
     }
 
     pub fn go_left(&mut self) {
         self.index += self.bufs.len() - 1;
         self.index %= self.bufs.len();
         self.update_buf();
-        println!("{}", self.index);
+        info!("Moving left to index: {}", self.index);
     }
 
     pub fn zoom_in(&mut self) {

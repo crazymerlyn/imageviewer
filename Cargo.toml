@@ -6,6 +6,7 @@ authors = ["CrazyMerlyn <crazy.d.merlyn@gmail.com>"]
 [dependencies]
 gdk-pixbuf="*"
 gdk = "*"
+log = "*"
 
 [dependencies.gtk]
 version = "0.1.1"

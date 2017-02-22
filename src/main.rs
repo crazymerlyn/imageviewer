@@ -1,3 +1,5 @@
+#[macro_use] extern crate log;
+
 extern crate gtk;
 extern crate gdk_pixbuf;
 extern crate gdk;
@@ -38,7 +40,7 @@ fn main() {
 
     let scroll_window: ScrolledWindow = builder.get_object("scrolledwindow").unwrap();
 
-    scroll_window.connect_key_press_event(move |s, k| {
+    scroll_window.connect_key_press_event(move |_, k| {
         let val = k.as_ref().keyval;
         let state = k.as_ref().state;
         match val {
@@ -56,7 +58,6 @@ fn main() {
                 }
             },
             key::Up => {
-                println!("{:?}", s.get_vadjustment());
                 if !state.intersects(modifier_type::ControlMask) {
                     buf_manager.borrow_mut().zoom_in();
                     image.set_from_pixbuf(buf_manager.borrow().get_buf());
@@ -68,7 +69,7 @@ fn main() {
                     image.set_from_pixbuf(buf_manager.borrow().get_buf());
                 }
             },
-            _ => println!("other")
+            _ => {}
         }
         Inhibit(false)
     });
